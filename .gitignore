@@ -1,0 +1,14 @@
+# big captures
+captures/*.pcap
+captures/*.pcapng
+*.pcap
+*.pcapng
+
+# logs/temp
+*.log
+*.tmp
+*.swp
+results/raw/
+
+# secrets (keep local)
+secrets/
