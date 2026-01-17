@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ueransim-ue
+  namespace: ueransim
+spec:
+  restartPolicy: Always
+  containers:
+    - name: ue
+      image: free5gc/ueransim:latest
+      command: ["/bin/bash", "-c"]
+      args:
+        - ./nr-ue -c /etc/ueransim/ue.yaml
+      securityContext:
+        privileged: true
+        capabilities:
+          add:
+            - NET_ADMIN
+      volumeMounts:
+        - name: ue-config
+          mountPath: /etc/ueransim
+        - name: tun-device
+          mountPath: /dev/net/tun
+  volumes:
+    - name: ue-config
+      configMap:
+        name: ue-config
+    - name: tun-device
+      hostPath:
+        path: /dev/net/tun
+        type: CharDevice
+

@@ -1,0 +1,24 @@
+mcc: '999'
+mnc: '70'
+
+nci: '0x000000010'
+idLength: 32
+tac: 1
+
+# Bind to pod IP in Kubernetes
+linkIp: 10.244.0.98
+ngapIp: 10.244.0.98
+gtpIp: 10.244.0.98
+
+# AMF via Kubernetes service DNS
+amfConfigs:
+  - address: open5gs-amf-ngap.open5gs.svc.cluster.local
+    port: 38412
+
+# match AMF supported slice
+slices:
+  - sst: 1
+    sd: 0x111111
+
+ignoreStreamIds: true
+
